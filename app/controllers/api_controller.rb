@@ -1,11 +1,13 @@
 class ApiController < ApplicationController
 
   def show
-    @personal = {'name' => 'Yamada', 'old' => 28}
-    
+    @provider = params[:provider]
+
+    googletrend = Googletrend.get
+
     respond_to do |format|
-      format.json {render :json => @personal}
-      format.xml  {render :xml => @personal}
+      format.json {render :json => googletrend}
+      format.xml  {render :xml => googletrend}
     end
   end
 
