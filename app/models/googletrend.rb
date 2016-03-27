@@ -6,6 +6,8 @@ class Googletrend
 
   URL_GOOGLE = "https://www.google.co.jp/trends/hottrends/atom/feed?pn=p4"
 
+
+
   def self.get
     uri = URI.parse(URL_GOOGLE)
     response = Net::HTTP.get(uri)
@@ -21,9 +23,17 @@ class Googletrend
       }
       trendList.push(eachItem)
     }
-
     trendList
 
+    output = {
+        "value" => {
+            "title" => hash["rss"]["channel"]["title"],
+            "link" => hash["rss"]["channel"]["link"][0],
+            "description" => hash["rss"]["channel"]["description"],
+            "item" => trendList
+        }
+    }
+    output
   end
 
   def hello
