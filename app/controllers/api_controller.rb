@@ -3,11 +3,21 @@ class ApiController < ApplicationController
   def show
     @provider = params[:provider]
 
-    googletrend = Googletrend.get
+    trendList =
+      case @provider
+        when "google"
+          Googletrend.get
+        when "yahoo"
+          Yahootrend.get
+        when "amazon"
+          Amazontrend.get
+        else
+          ["error"]
+      end
 
     respond_to do |format|
-      format.json {render :json => googletrend}
-      format.xml  {render :xml => googletrend}
+      format.json {render :json => trendList}
+      format.xml  {render :xml => trendList}
     end
   end
 
