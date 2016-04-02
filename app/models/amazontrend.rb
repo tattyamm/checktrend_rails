@@ -13,7 +13,7 @@ class Amazontrend
     hash["rss"]["channel"]["item"].each { |item|
       eachItem = {
           "title" => item["title"],
-          "link" => item["link"],
+          "link" => item["link"].strip,
           "pubDate" => DateTime.parse(item["pubDate"]).strftime("%Y-%m-%d"),
           "description" => self.getContributor(item["description"]) #item["description"],
       }
@@ -34,7 +34,7 @@ class Amazontrend
 
   def self.getContributor(str)
     if str =~ /riRssContributor\">(.+?)<span/
-      strip_tags(CGI.unescapeHTML($1))
+      strip_tags(CGI.unescapeHTML($1)).strip
     else
       ""
     end
