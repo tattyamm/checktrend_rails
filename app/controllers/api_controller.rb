@@ -9,6 +9,8 @@ class ApiController < ApplicationController
           Googletrend.get
         when "yahoo"
           Yahootrend.get
+        when "twitter"
+          Twittertrend.get
         when "amazon"
           Amazontrend.get
         else
