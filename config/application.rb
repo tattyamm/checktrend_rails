@@ -24,11 +24,7 @@ module Checktrend
     config.active_record.raise_in_transactional_callbacks = true
 
     # redis
-    config.cache_store = :redis_store, { host: "localhost",
-                                         port: 6379,
-                                         db: 0,
-                                         #password: "mysecret",
-                                         namespace: "cache",
-                                         expires_in: 1.minutes }
+    config.cache_store = :redis_store, ENV["REDISTOGO_URL"] + "0/cache", { expires_in: 1.minutes }
+
   end
 end
