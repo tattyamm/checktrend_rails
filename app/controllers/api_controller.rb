@@ -3,7 +3,7 @@ class ApiController < ApplicationController
   def show
     @provider = params[:provider]
 
-    trendList =
+    trendList = Rails.cache.fetch(@provider) do
       case @provider
         when "google"
           Googletrend.get
@@ -16,6 +16,7 @@ class ApiController < ApplicationController
         else
           ["error"]
       end
+    end
 
     respond_to do |format|
       format.json {render :json => trendList}

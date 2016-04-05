@@ -22,5 +22,13 @@ module Checktrend
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # redis
+    config.cache_store = :redis_store, { host: "localhost",
+                                         port: 6379,
+                                         db: 0,
+                                         #password: "mysecret",
+                                         namespace: "cache",
+                                         expires_in: 1.minutes }
   end
 end
