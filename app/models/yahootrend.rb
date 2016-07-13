@@ -11,7 +11,7 @@ class Yahootrend
             "title" => "yahoo trend",
             "link" => URL_YAHOO,
             "description" => "",
-            "item" => trendList
+            "items" => trendList
         }
     }
     output

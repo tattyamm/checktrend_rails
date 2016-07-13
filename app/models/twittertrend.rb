@@ -22,7 +22,7 @@ class Twittertrend
             "title" => "twitter trend",
             "link" => "https://twitter.com/",
             "description" => "",
-            "item" => trendList
+            "items" => trendList
         }
     }
     output

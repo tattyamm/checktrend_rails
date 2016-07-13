@@ -26,7 +26,7 @@ class Amazontrend
             "title" => "amazon trend",
             "link" => URL_AMAZON,
             "description" => "",
-            "item" => trendList
+            "items" => trendList
         }
     }
     output

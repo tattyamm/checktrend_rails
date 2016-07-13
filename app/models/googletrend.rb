@@ -11,7 +11,7 @@ class Googletrend
             "title" => "google trend",
             "link" => URL_GOOGLE,
             "description" => "",
-            "item" => trendList
+            "items" => trendList
         }
     }
     output
