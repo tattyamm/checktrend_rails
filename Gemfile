@@ -34,7 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'twitter', '~> 5.16.0'
 gem 'figaro'
 gem 'redis-rails'
-
+gem "bing_translator", "~> 4.5.0"
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

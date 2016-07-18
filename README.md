@@ -5,11 +5,15 @@ Checktrend([iOS](https://itunes.apple.com/jp/app/checktrend-chekkutorendo/id3971
 ## Requirement
 * Create heroku application.
 * Add [Redis To Go](https://elements.heroku.com/addons/redistogo) add-on.
-* Make ```config/application.yml``` , and write Twitter consumer key, consumer secret.
+* Make ```config/application.yml``` , and write Twitter, Microsoft setting.
 
 ```
+# twitter
 consumerKey: "*****"
 consumerSecret: "*****"
+# microsoft
+MS_TRANSLATOR_CLIENT_ID: "*****"
+MS_TRANSLATOR_CLIENT_SECRET: "*****"
 ```
 
 * Set Heroku environment variables by figaro
@@ -21,8 +25,6 @@ figaro heroku:set -e production
 * add Redis To Go url to ```config/application.yml``` .
 
 ```
-consumerKey: "*****"
-consumerSecret: "*****"
 REDISTOGO_URL: "redis://localhost:6379/"
 ```
 

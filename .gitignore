@@ -20,5 +20,6 @@
 /.idea
 
 #other
+/private
 memo.md
 config/application.yml

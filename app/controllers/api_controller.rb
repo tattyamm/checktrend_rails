@@ -3,6 +3,7 @@ class ApiController < ApplicationController
   def show
     @provider = params[:provider]
 
+    # 取得
     trendList = Rails.cache.fetch(@provider) do
       case @provider
         when "google"
@@ -16,6 +17,12 @@ class ApiController < ApplicationController
         else
           ["error"]
       end
+    end
+
+    # 翻訳
+    if (params.has_key?(:from) && params.has_key?(:to)) then
+      trendList = Translator.all(trendList, params[:from], params[:to])
+    else
     end
 
     respond_to do |format|
