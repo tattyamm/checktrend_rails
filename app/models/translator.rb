@@ -22,9 +22,9 @@ class Translator
 
     output = {
         "value" => {
-            "title" => contents["title"],
-            "link" => contents["link"],
-            "description" => contents["description"],
+            "title" => contents["value"]["title"],
+            "link" => contents["value"]["link"],
+            "description" => contents["value"]["description"],
             "items" => trendList
         }
     }
