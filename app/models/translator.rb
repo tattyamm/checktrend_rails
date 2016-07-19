@@ -32,7 +32,7 @@ class Translator
   end
 
   def self.execute(translator, str, from, to)
-    cacheKey = "TRANSLATOR_" + from + "_" + to + "_" + Digest::MD5.hexdigest(str.force_encoding("UTF-8"))
+    cacheKey = "v0720" + "TRANSLATOR_" + from + "_" + to + "_" + Digest::MD5.hexdigest(str.force_encoding("UTF-8"))
     result = Rails.cache.fetch(cacheKey, expires_in: 90.minutes) do
       p "API使用 " + str
       begin
