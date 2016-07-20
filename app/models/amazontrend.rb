@@ -3,6 +3,7 @@ class Amazontrend
   include Rss
 
   URL_AMAZON = "http://www.amazon.co.jp/gp/rss/bestsellers/books/ref=zg_bs_books_rsslink"
+  TAG_AMAZON = "iphonect-22"
 
   def self.get
     uri = URI.parse(URL_AMAZON)
@@ -11,9 +12,13 @@ class Amazontrend
 
     trendList = Array.new
     hash["rss"]["channel"]["item"].each { |item|
+      link = item["link"].strip + "&tag=" + TAG_AMAZON
+      asin = link.match(%r{.*/dp/(.+?)/.*})[1]
+      link_short = "http://amazon.jp/dp/" + asin + "?tag=" + TAG_AMAZON
+
       eachItem = {
           "title" => item["title"],
-          "link" => item["link"].strip,
+          "link" => link_short,
           "pubDate" => DateTime.parse(item["pubDate"]).strftime("%Y-%m-%d"),
           "description" => self.getContributor(item["description"]) #item["description"],
       }
