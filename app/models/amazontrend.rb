@@ -2,7 +2,7 @@ class Amazontrend
   include ActiveModel::Model
   include Rss
 
-  URL_AMAZON = "http://www.amazon.co.jp/gp/rss/bestsellers/books/ref=zg_bs_books_rsslink"
+  URL_AMAZON = "https://www.amazon.co.jp/gp/rss/bestsellers/books/ref=zg_bs_books_rsslink"
   TAG_AMAZON = "iphonect-22"
 
   def self.get
@@ -14,7 +14,7 @@ class Amazontrend
     hash["rss"]["channel"]["item"].each { |item|
       link = item["link"].strip + "&tag=" + TAG_AMAZON
       asin = link.match(%r{.*/dp/(.+?)/.*})[1]
-      link_short = "http://amazon.jp/dp/" + asin + "?tag=" + TAG_AMAZON
+      link_short = "https://amazon.jp/dp/" + asin + "?tag=" + TAG_AMAZON
 
       eachItem = {
           "title" => item["title"],
