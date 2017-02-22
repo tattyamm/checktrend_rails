@@ -2,7 +2,7 @@ class Googletrend
   include ActiveModel::Model
   include Rss
 
-  URL_GOOGLE = "https://www.google.co.jp/trends/hottrends/atom/feed?pn=p4"
+  URL_GOOGLE = "https://trends.google.co.jp/trends/hottrends/atom/feed?pn=p4"
 
   def self.get
     trendList = getRssContent(URL_GOOGLE)
