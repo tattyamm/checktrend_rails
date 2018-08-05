@@ -14,6 +14,8 @@ class ApiController < ApplicationController
           Twittertrend.get
         when "amazon"
           Amazontrend.get
+        when "youtube"
+          Youtubetrend.get
         else
           ["error"]
       end
