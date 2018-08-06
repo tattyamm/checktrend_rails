@@ -2,7 +2,7 @@ class Youtubetrend
   include ActiveModel::Model
   include Rss
 
-  URL_YOUTUBE = "https://www.youtube.com/feeds/videos.xml?playlist_id=PLrEnWoR732-BHrPp_Pm8_VleD68f9s14-"
+  URL_YOUTUBE = "https://www.youtube.com/feeds/videos.xml?playlist_id=PLuXL6NS58Dyztg3TS-kJVp58ziTo5Eeck"
 
   def self.get
     uri = URI.parse(URL_YOUTUBE)
@@ -16,7 +16,7 @@ class Youtubetrend
           "title" => item["title"],
           "link" => link,
           "pubDate" => DateTime.parse(item["published"]).strftime("%Y-%m-%d"),
-          "description" => ""
+          "description" => item["author"]["name"]
       }
       trendList.push(eachItem)
     }
