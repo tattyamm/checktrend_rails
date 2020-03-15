@@ -30,8 +30,8 @@ REDISTOGO_URL: "redis://localhost:6379/"
 
 
 ## Versions
-* ruby 2.3.0p0 (2015-12-25 revision 53290)
-* Rails 4.2.5
+* ruby 2.6.5
+* Rails 5.2.4.1
 
 ## License
 This software is released under the MIT License, see LICENSE.txt.
