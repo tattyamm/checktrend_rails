@@ -4,7 +4,7 @@ class ApiController < ApplicationController
     @provider = params[:provider]
 
     # 取得
-    trendList = Rails.cache.fetch(@provider) do
+    trendList = 
       case @provider
         when "google"
           Googletrend.get
@@ -18,7 +18,6 @@ class ApiController < ApplicationController
           Youtubetrend.get
         else
           ["error"]
-      end
     end
 
     # 翻訳

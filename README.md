@@ -14,6 +14,11 @@ consumerSecret: "*****"
 # microsoft
 MS_TRANSLATOR_CLIENT_ID: "*****"
 MS_TRANSLATOR_CLIENT_SECRET: "*****"
+# Amazon Product Advertising API
+AMAZON_PAAPI_MARKETPLACE: "***"
+AMAZON_PAAPI_ACCESS_KEY: "***"
+AMAZON_PAAPI_SECRET_KEY: "***"
+AMAZON_PAAPI_PARTNER_TAG: "***"
 ```
 
 * Set Heroku environment variables by figaro

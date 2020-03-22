@@ -2,51 +2,50 @@ class Amazontrend
   include ActiveModel::Model
   include Rss
 
-  URL_AMAZON = "https://www.amazon.co.jp/gp/rss/bestsellers/books/ref=zg_bs_books_rsslink"
-  TAG_AMAZON = "iphonect-22"
+  URL_AMAZON = "https://www.amazon.co.jp/%E6%9C%AC-%E6%9B%B8%E7%B1%8D-%E9%80%9A%E8%B2%A9/b?ie=UTF8&node=465392"
 
   def self.get
-    uri = URI.parse(URL_AMAZON)
-    response = Net::HTTP.get(uri)
-    hash = Hash.from_xml(response)
+
+    request = Vacuum.new(marketplace: ENV["AMAZON_PAAPI_MARKETPLACE"],
+                     access_key: ENV["AMAZON_PAAPI_ACCESS_KEY"],
+                     secret_key: ENV["AMAZON_PAAPI_SECRET_KEY"],
+                     partner_tag: ENV["AMAZON_PAAPI_PARTNER_TAG"])
+    response = request.search_items(
+      keywords: '*',
+      browse_node_id: "465392",
+      sort_by: "Featured", #Featured...注目順(Sorts results with featured items having higher rank)
+      resources: [
+        "ItemInfo.Title",
+        "BrowseNodeInfo.WebsiteSalesRank"
+        ]
+      )
+    puts response.to_h["SearchResult"]["Items"]
 
     trendList = Array.new
-    hash["rss"]["channel"]["item"].each { |item|
-      link = item["link"].strip + "&tag=" + TAG_AMAZON
-      asin = link.match(%r{.*/dp/(.+?)/.*})[1]
-      link_short = "https://amazon.jp/dp/" + asin + "?tag=" + TAG_AMAZON
-
+    response.to_h["SearchResult"]["Items"].each { |item|
       eachItem = {
-          "title" => item["title"],
-          "link" => link_short,
-          "pubDate" => DateTime.parse(item["pubDate"]).strftime("%Y-%m-%d"),
-          "description" => self.getContributor(item["description"]) #item["description"],
+        "title" => item["DetailPageURL"],
+        "link" => item["ItemInfo"]["Title"]["DisplayValue"],
+        "pubDate" => DateTime.now.strftime("%Y-%m-%d"),
+        "description" => ""
       }
       trendList.push(eachItem)
     }
-    trendList
 
     output = {
         "value" => {
-            "title" => "amazon trend",
+            "title" => "amazon featured",
             "link" => URL_AMAZON,
             "description" => "",
             "items" => trendList
         }
     }
+
     output
+
+
+
   end
 
-  def self.getContributor(str)
-    if str =~ /riRssContributor\">(.+?)<span/
-      strip_tags(CGI.unescapeHTML($1)).strip
-    else
-      ""
-    end
-  end
-
-  def self.strip_tags(str)
-    ActionController::Base.helpers.strip_tags(str)
-  end
 
 end
