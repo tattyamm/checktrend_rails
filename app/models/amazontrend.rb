@@ -24,8 +24,8 @@ class Amazontrend
     trendList = Array.new
     response.to_h["SearchResult"]["Items"].each { |item|
       eachItem = {
-        "title" => item["DetailPageURL"],
-        "link" => item["ItemInfo"]["Title"]["DisplayValue"],
+        "title" => item["ItemInfo"]["Title"]["DisplayValue"],
+        "link" => item["DetailPageURL"],
         "pubDate" => DateTime.now.strftime("%Y-%m-%d"),
         "description" => ""
       }
