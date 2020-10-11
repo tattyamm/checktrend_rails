@@ -1,3 +1,7 @@
+# 売り上げ実績が無いと、このAPIは使えないらしい
+# 動くことも希にあるが、基本的にはエラーとなる
+# エラーメッセージ : The request was denied due to request throttling. Please verify the number of requests made per second to the Amazon Product Advertising API.
+
 class Amazontrend
   include ActiveModel::Model
   include Rss
@@ -19,6 +23,7 @@ class Amazontrend
         "BrowseNodeInfo.WebsiteSalesRank"
         ]
       )
+    puts response.to_h
     puts response.to_h["SearchResult"]["Items"]
 
     trendList = Array.new
