@@ -23,8 +23,8 @@ module Checktrend
     # Do not swallow errors in after_commit/after_rollback callbacks.
     #config.active_record.raise_in_transactional_callbacks = true
 
-    # redis
-    config.cache_store = :redis_store, ENV["REDISTOGO_URL"] + "0/cache", { expires_in: 2.minutes }
+    # cache
+    config.cache_store = :memory_store, { size: 8.megabytes }
 
   end
 end
