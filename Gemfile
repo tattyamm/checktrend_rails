@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '2.6.5'
+ruby '2.7.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
+gem 'rails', '5.2.8'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -36,7 +36,7 @@ gem 'twitter', '~> 5.16.0'
 gem 'figaro'
 gem 'redis-rails'
 gem "bing_translator", "~> 4.5.0"
-gem 'therubyracer'
+#gem 'therubyracer'
 
 gem 'vacuum', '>= 3.0.0'
 
