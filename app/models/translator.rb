@@ -1,5 +1,6 @@
 require 'bing_translator'
 require 'digest/md5'
+require 'securerandom'
 
 class Translator
   include ActiveModel::Model
@@ -11,6 +12,7 @@ class Translator
     trendList = Array.new
     contents["value"]["items"].slice(0, 10).each { |item|
       eachItem = {
+          "id" => SecureRandom.uuid,
           "title" => execute(translator, item["title"], from, to),
           "link" => item["link"],
           "pubDate" => item["pubDate"],

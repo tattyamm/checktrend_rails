@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class Googletrend
   include ActiveModel::Model
   include Rss
@@ -8,6 +10,7 @@ class Googletrend
     trendList = getRssContent(URL_GOOGLE)
     output = {
         "value" => {
+           "id" => SecureRandom.uuid,
             "title" => "google trend",
             "link" => URL_GOOGLE,
             "description" => "",

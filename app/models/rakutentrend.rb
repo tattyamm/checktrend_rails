@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class Rakutentrend
     include ActiveModel::Model
     include Rss
@@ -18,6 +20,7 @@ class Rakutentrend
             #puts "[obj_item]"
             #puts obj_item
             eachItem = {
+                "id" => SecureRandom.uuid,
                 "title" => obj_item["Item"]["itemName"],
                 "link" => obj_item["Item"]["itemUrl"],
                 "pubDate" => DateTime.now.strftime("%Y-%m-%d"),

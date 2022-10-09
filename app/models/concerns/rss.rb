@@ -1,5 +1,6 @@
 require 'net/http'
 require 'uri'
+require 'securerandom'
 
 module Rss
   extend ActiveSupport::Concern
@@ -13,6 +14,7 @@ module Rss
       rssList = Array.new
       hash["rss"]["channel"]["item"].each { |item|
         eachItem = {
+            "id" => SecureRandom.uuid,
             "title" => item["title"],
             "link" => item["link"],
             "pubDate" => DateTime.parse(item["pubDate"]).strftime("%Y-%m-%d"),

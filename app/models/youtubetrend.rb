@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class Youtubetrend
   include ActiveModel::Model
   include Rss
@@ -13,6 +15,7 @@ class Youtubetrend
     hash["feed"]["entry"].each { |item|
       link = item["link"]["href"]
       eachItem = {
+          "id" => SecureRandom.uuid,
           "title" => item["title"],
           "link" => link,
           "pubDate" => DateTime.parse(item["published"]).strftime("%Y-%m-%d"),

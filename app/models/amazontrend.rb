@@ -1,6 +1,7 @@
 # 売り上げ実績が無いと、このAPIは使えないらしい
 # 動くことも希にあるが、基本的にはエラーとなる
 # エラーメッセージ : The request was denied due to request throttling. Please verify the number of requests made per second to the Amazon Product Advertising API.
+require 'securerandom'
 
 class Amazontrend
   include ActiveModel::Model
@@ -29,6 +30,7 @@ class Amazontrend
     trendList = Array.new
     response.to_h["SearchResult"]["Items"].each { |item|
       eachItem = {
+        "id" => SecureRandom.uuid,
         "title" => item["ItemInfo"]["Title"]["DisplayValue"],
         "link" => item["DetailPageURL"],
         "pubDate" => DateTime.now.strftime("%Y-%m-%d"),

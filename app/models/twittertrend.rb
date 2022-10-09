@@ -1,3 +1,4 @@
+require 'securerandom'
 # promoted_content というパラメタがある
 
 class Twittertrend
@@ -7,6 +8,7 @@ class Twittertrend
     trendList = Array.new
     getTrend.each { |item|
       eachItem = {
+          "id" => SecureRandom.uuid,
           "title" => item.name,
           "link" => "https://twitter.com/search?" + item.url.query,
           "pubDate" => DateTime.now.strftime("%Y-%m-%d"),
