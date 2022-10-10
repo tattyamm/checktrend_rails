@@ -22,7 +22,7 @@ class Rakutentrend
             eachItem = {
                 "id" => SecureRandom.uuid,
                 "title" => obj_item["Item"]["itemName"],
-                "link" => obj_item["Item"]["itemUrl"],
+                "link" => obj_item["Item"]["itemUrl"].gsub("http://", "https://").gsub("http%3A%2F%2F", "https%3A%2F%2F"),
                 "pubDate" => DateTime.now.strftime("%Y-%m-%d"),
                 "description" => obj_item["Item"]["itemCaption"],
             }
