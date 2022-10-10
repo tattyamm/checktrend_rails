@@ -38,7 +38,7 @@ gem 'twitter', '~> 5.16.0'
 gem 'figaro'
 gem 'redis-rails'
 gem 'oauth'
-#gem 'therubyracer'
+gem 'parallel'
 
 gem 'vacuum', '>= 3.0.0'
 

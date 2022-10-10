@@ -4,14 +4,14 @@ require 'net/http'
 require 'uri'
 require 'json'
 require 'oauth'
-
+require 'parallel'
 
 class Translator
   include ActiveModel::Model
 
   def self.all(contents, from, to)
-    trendList = Array.new
-    contents["value"]["items"].slice(0, 10).each { |item|
+    contents["value"]["items"] = contents["value"]["items"].slice(0, 15)
+    contents["value"]["items"] = Parallel.map(contents["value"]["items"], in_threads: 3) do |item|
       eachItem = {
           "id" => SecureRandom.uuid,
           "title" => execute(text:item["title"], from_lang:from, to_lang:to),
@@ -19,23 +19,12 @@ class Translator
           "pubDate" => item["pubDate"],
           "description" => item["title"],
       }
-      trendList.push(eachItem)
-    }
-    trendList
-
-    output = {
-        "value" => {
-            "title" => contents["value"]["title"],
-            "link" => contents["value"]["link"],
-            "description" => contents["value"]["description"],
-            "items" => trendList
-        }
-    }
-    output
+      eachItem
+    end
+    contents
   end
 
   def self.execute(text: '', from_lang: 'ja', to_lang: 'en')
-    #TODO 暫定
     consumer_key = ENV["MINHON_CONSUMER_KEY"]
     consumer_secret = ENV["MINHON_CONSUMER_SECRET"]
     name = ENV["MINHON_NAME"]
