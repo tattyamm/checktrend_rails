@@ -10,9 +10,10 @@ Checktrend([iOS](https://itunes.apple.com/jp/app/checktrend-chekkutorendo/id3971
 # twitter
 consumerKey: "*****"
 consumerSecret: "*****"
-# microsoft
-MS_TRANSLATOR_CLIENT_ID: "*****"
-MS_TRANSLATOR_CLIENT_SECRET: "*****"
+# みんなの翻訳
+MINHON_CONSUMER_KEY: "***"
+MINHON_CONSUMER_SECRET: "***"
+MINHON_NAME: "***"
 # Amazon Product Advertising API
 AMAZON_PAAPI_MARKETPLACE: "***"
 AMAZON_PAAPI_ACCESS_KEY: "***"

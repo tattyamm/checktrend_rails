@@ -37,7 +37,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'twitter', '~> 5.16.0'
 gem 'figaro'
 gem 'redis-rails'
-gem "bing_translator", "~> 4.5.0"
+gem 'oauth'
 #gem 'therubyracer'
 
 gem 'vacuum', '>= 3.0.0'
