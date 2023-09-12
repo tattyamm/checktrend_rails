@@ -29,7 +29,7 @@ class Translator
     consumer_secret = ENV["MINHON_CONSUMER_SECRET"]
     name = ENV["MINHON_NAME"]
     url = "https://mt-auto-minhon-mlt.ucri.jgn-x.jp/api/mt/generalNT_#{from_lang}_#{to_lang}/"
- 
+
     consumer = OAuth::Consumer.new(consumer_key, consumer_secret)
     endpoint = OAuth::AccessToken.new(consumer)
 
