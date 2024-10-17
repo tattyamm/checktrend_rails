@@ -136,7 +136,7 @@ GEM
       net-imap
       net-pop
       net-smtp
-    marcel (1.0.2)
+    marcel (1.0.4)
     matrix (0.4.2)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
